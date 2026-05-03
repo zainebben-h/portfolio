@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaineb Ben Hmida — Certifications</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: rgba(255,255,255,0.07);
+    --accent: #4f8ef7;
+    --accent2: #a78bfa;
+    --text: #f0f0f5;
+    --muted: #7b7b8f;
+    --dc: #03ef62;
+    --google: #4285f4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,247,0.07) 0%, transparent 70%);
+    top: -200px;
+    right: -200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .glow2 {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
+    bottom: -100px;
+    left: -100px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.25);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 16px;
+    font-weight: 300;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 48px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+  }
+
+  /* Filter tabs */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .filter-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* Grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 80px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(79,142,247,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(79,142,247,0.1);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .org-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .org-badge.datacamp {
+    background: rgba(3,239,98,0.08);
+    border: 1px solid rgba(3,239,98,0.2);
+    color: var(--dc);
+  }
+
+  .org-badge.google {
+    background: rgba(66,133,244,0.08);
+    border: 1px solid rgba(66,133,244,0.2);
+    color: var(--google);
+  }
+
+  .org-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .org-badge.datacamp .org-dot { background: var(--dc); }
+  .org-badge.google .org-dot { background: var(--google); }
+
+  .card-date {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hours-pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .card-icon.dc { background: rgba(3,239,98,0.08); }
+  .card-icon.gc { background: rgba(66,133,244,0.08); }
+
+  /* Category label */
+  .category-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(167,139,250,0.08);
+    border: 1px solid rgba(167,139,250,0.2);
+    color: var(--accent2);
+    margin-bottom: 10px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* hidden class for filtering */
+  .card.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<div class="container">
+  <header>
+    <div class="badge">Portfolio de Certifications</div>
+    <h1>Zaineb <span>Ben Hmida</span></h1>
+    <p class="subtitle">Étudiante en Licence — Informatique & Multimédia · ISITCOM</p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Certificats</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Organismes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">28h</div>
+        <div class="stat-label">De formation</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filter('all', this)">Tous</button>
+    <button class="filter-btn" onclick="filter('datacamp', this)">DataCamp</button>
+    <button class="filter-btn" onclick="filter('google', this)">ISITCOM Google Club</button>
+    <button class="filter-btn" onclick="filter('backend', this)">Backend</button>
+    <button class="filter-btn" onclick="filter('python', this)">Python</button>
+    <button class="filter-btn" onclick="filter('data', this)">Data</button>
+  </div>
+
+  <div class="grid" id="grid">
+
+    <!-- Backend Development -->
+    <div class="card" data-tags="google backend" style="animation-delay:0.05s">
+      <div class="card-header">
+        <span class="org-badge google"><span class="org-dot"></span>ISITCOM Google Club</span>
+        <span class="card-date">08 Avr 2026</span>
+      </div>
+      <div class="category-tag">Backend</div>
+      <div class="card-title">Backend Development Workshop</div>
+      <div class="card-desc">Exploration des fondamentaux du développement côté serveur, architecture API et logique applicative.</div>
+      <div class="card-footer">
+        <div class="card-icon gc">🖥️</div>
+      </div>
+    </div>
+
+    <!-- React Fundamentals -->
+    <div class="card" data-tags="google frontend" style="animation-delay:0.1s">
+      <div class="card-header">
+        <span class="org-badge google"><span class="org-dot"></span>ISITCOM Google Club</span>
+        <span class="card-date">01 Avr 2026</span>
+      </div>
+      <div class="category-tag">Frontend</div>
+      <div class="card-title">React Fundamentals</div>
+      <div class="card-desc">Maîtrise des fondamentaux de React et développement d'applications web interactives par la pratique.</div>
+      <div class="card-footer">
+        <div class="card-icon gc">⚛️</div>
+      </div>
+    </div>
+
+    <!-- Intermediate R -->
+    <div class="card" data-tags="datacamp data" style="animation-delay:0.15s">
+      <div class="card-header">
+        <span class="org-badge datacamp"><span class="org-dot"></span>DataCamp</span>
+        <span class="card-date">Mai 2025</span>
+      </div>
+      <div class="category-tag">Data Science</div>
+      <div class="card-title">Intermediate R</div>
+      <div class="card-desc">Programmation R niveau intermédiaire pour l'analyse et la manipulation de données.</div>
+      <div class="card-footer">
+        <span class="hours-pill">6 hrs</span>
+        <div class="card-icon dc">📊</div>
+      </div>
+    </div>
+
+    <!-- OOP Python -->
+    <div class="card" data-tags="datacamp python" style="animation-delay:0.2s">
+      <div class="card-header">
+        <span class="org-badge datacamp"><span class="org-dot"></span>DataCamp</span>
+        <span class="card-date">Mai 2025</span>
+      </div>
+      <div class="category-tag">Python</div>
+      <div class="card-title">Object-Oriented Programming in Python</div>
+      <div class="card-desc">Conception orientée objet en Python : classes, héritage, encapsulation et polymorphisme.</div>
+      <div class="card-footer">
+        <span class="hours-pill">4 hrs</span>
+        <div class="card-icon dc">🐍</div>
+      </div>
+    </div>
+
+    <!-- Data Types Python -->
+    <div class="card" data-tags="datacamp python" style="animation-delay:0.25s">
+      <div class="card-header">
+        <span class="org-badge datacamp"><span class="org-dot"></span>DataCamp</span>
+        <span class="card-date">Avr 2025</span>
+      </div>
+      <div class="category-tag">Python</div>
+      <div class="card-title">Data Types in Python</div>
+      <div class="card-desc">Maîtrise des types de données Python : listes, dictionnaires, sets, tuples et structures avancées.</div>
+      <div class="card-footer">
+        <span class="hours-pill">4 hrs</span>
+        <div class="card-icon dc">🐍</div>
+      </div>
+    </div>
+
+    <!-- Intermediate Python -->
+    <div class="card" data-tags="datacamp python backend" style="animation-delay:0.3s">
+      <div class="card-header">
+        <span class="org-badge datacamp"><span class="org-dot"></span>DataCamp</span>
+        <span class="card-date">Mar 2025</span>
+      </div>
+      <div class="category-tag">Python</div>
+      <div class="card-title">Intermediate Python for Developers</div>
+      <div class="card-desc">Python intermédiaire appliqué au développement logiciel : bonnes pratiques, débogage et performance.</div>
+      <div class="card-footer">
+        <span class="hours-pill">2 hrs</span>
+        <div class="card-icon dc">🐍</div>
+      </div>
+    </div>
+
+    <!-- Intermediate SQL -->
+    <div class="card" data-tags="datacamp data backend" style="animation-delay:0.35s">
+      <div class="card-header">
+        <span class="org-badge datacamp"><span class="org-dot"></span>DataCamp</span>
+        <span class="card-date">Fév 2025</span>
+      </div>
+      <div class="category-tag">Base de données</div>
+      <div class="card-title">Intermediate SQL</div>
+      <div class="card-desc">SQL niveau intermédiaire : requêtes complexes, jointures avancées, sous-requêtes et agrégations.</div>
+      <div class="card-footer">
+        <span class="hours-pill">4 hrs</span>
+        <div class="card-icon dc">🗄️</div>
+      </div>
+    </div>
+
+    <!-- Understanding Data Engineering -->
+    <div class="card" data-tags="datacamp data" style="animation-delay:0.4s">
+      <div class="card-header">
+        <span class="org-badge datacamp"><span class="org-dot"></span>DataCamp</span>
+        <span class="card-date">Fév 2025</span>
+      </div>
+      <div class="category-tag">Data Engineering</div>
+      <div class="card-title">Understanding Data Engineering</div>
+      <div class="card-desc">Introduction à l'ingénierie des données : pipelines, entrepôts de données et infrastructure data.</div>
+      <div class="card-footer">
+        <span class="hours-pill">2 hrs</span>
+        <div class="card-icon dc">⚙️</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Zaineb Ben Hmida · <a href="mailto:zainebbенhmida26@gmail.com">zainebbенhmida26@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+  function filter(tag, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.card').forEach(card => {
+      if (tag === 'all') {
+        card.classList.remove('hidden');
+      } else {
+        const tags = card.dataset.tags || '';
+        if (tags.includes(tag)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
